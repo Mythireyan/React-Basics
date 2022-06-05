@@ -1,7 +1,13 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { UPDATE_USER_LIST } from "../../redux/actions/index";
 import "./loginForm.css";
 
-export default function Login() {
+export default function Login({ setuserData }) {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const [formInput, setformInput] = useState({});
   const [click, setclick] = useState(false);
   const [passError, setpassError] = useState(false);
@@ -15,8 +21,10 @@ export default function Login() {
     setclick(true);
     const { username, password1, password2 } = formInput;
     if (username && password1 && password2 && confirmPassword()) {
-      console.log(formInput);
       console.log("submitted!!");
+      setuserData(formInput);
+      navigate("/users");
+      dispatch(UPDATE_USER_LIST([formInput]));
     }
   };
 
@@ -57,7 +65,7 @@ export default function Login() {
       />
       {!formInput.password2 && click ? "This is required" : null}
       {passError ? "Password does'nt match" : null}
-      <button type="submit">Login</button>
+      <button type="submit">Create Account</button>
     </form>
   );
 }
