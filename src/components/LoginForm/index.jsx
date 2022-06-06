@@ -14,6 +14,7 @@ export default function Registration({ setuserData }) {
           left: "25%",
         }}
       />
+      <a href="/users">Users List</a>
     </div>
   );
 }

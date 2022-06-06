@@ -4,6 +4,7 @@ import { Provider } from "react-redux";
 import store from "../src/redux/store";
 import Login from "./components/LoginForm";
 import UserList from "./components/UserList";
+import EditUser from "./components/EditUser";
 
 export const UserDetailContext = React.createContext();
 export default function App() {
@@ -21,6 +22,9 @@ export default function App() {
             </Routes>
             <Routes>
               <Route path="/users" element={<UserList />}></Route>
+            </Routes>
+            <Routes>
+              <Route path="/edit/:id" element={<EditUser />}></Route>
             </Routes>
           </BrowserRouter>
         </UserDetailContext.Provider>
